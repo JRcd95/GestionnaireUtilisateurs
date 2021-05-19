@@ -11,9 +11,9 @@ class Register {
     }
 
     public function listUsers() {
-        $bdd = $this->bdd;
+
         $query = "SELECT * FROM users;";
-        $req = $bdd->prepare($query);
+        $req = $this->bdd->prepare($query);
         $req->execute();
 
         while ($row = $req->fetch(PDO::FETCH_ASSOC)){
@@ -28,9 +28,8 @@ class Register {
     }
 
     public function listGroups() {
-            $bdd = $this->bdd;
             $query = "SELECT * FROM groups;";
-            $req = $bdd->prepare($query);
+            $req = $this->bdd->prepare($query);
             $req->execute();
 
             while ($row = $req->fetch(PDO::FETCH_ASSOC)){
@@ -44,21 +43,14 @@ class Register {
     }
 
     public function addUsers(){
-        if (isset($_POST["firstName"], $_POST["lastName"]) && !empty($_POST["firstName"]) && !empty($_POST["lastName"])) {
 
-                $bdd = $this->bdd;
                 $query = "INSERT INTO users VALUES(:firstName, :lastName)";
-                $stat = $bdd->prepare($query);
+                $stat = $this->bdd->prepare($query);
                 $stat->bindValue(':firstName', $_POST['firstName'], PDO::PARAM_STR);
                 $stat->bindValue(':lastName', $_POST['lastName'], PDO::PARAM_STR);
 
                 $stat->execute();
 
-                Header("Location:app.php");
-
-        } else {
-            Header("Location:app.php");
-        }
     }
 
 

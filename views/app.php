@@ -1,16 +1,12 @@
 <?php
-    require_once '../database/connection.php';
+    require_once '../classes/RegisterManager.php';
 
-if (isset($_POST["firstName"], $_POST["lastName"]) && !empty($_POST["firstName"]) && !empty($_POST["lastName"])) {
+    $register = new Register();
 
-    $query = "INSERT INTO users VALUES(:firstName, :lastName)";
-    $stat = $bdd->prepare($query);
-    $stat->bindValue(':firstName', $_POST['firstName'], PDO::PARAM_STR);
-    $stat->bindValue(':lastName', $_POST['lastName'], PDO::PARAM_STR);
+    if (isset($_POST["firstName"], $_POST["lastName"]) && !empty($_POST["firstName"]) && !empty($_POST["lastName"])) {
+        $register->addUsers();
+    }
 
-    $stat->execute();
-
-}
     ?>
 <!DOCTYPE html>
 <html>
@@ -45,10 +41,10 @@ if (isset($_POST["firstName"], $_POST["lastName"]) && !empty($_POST["firstName"]
                            <label for="groupUser">Groupes</label>
                            <select class="form-control">
                                <?php
-                                   $groups = $bdd->query("SELECT * FROM groups;")->fetchAll();
+                                   $groups= $register->listGroups();
                                    foreach($groups as $g) {
                                        ?>
-                                       <option><?= $g['name']?></option>
+                                       <option><?= $g->getName()?></option>
                                        <?php
                                    }
                                ?>
@@ -70,12 +66,12 @@ if (isset($_POST["firstName"], $_POST["lastName"]) && !empty($_POST["firstName"]
                            <th>Prénom</th>
                        </tr>
                        <?php
-                           $users = $bdd->query("SELECT * FROM users;")->fetchAll();
+                           $users = $register->listUsers();
                            foreach($users as $u) {
                                ?>
                                <tr>
-                                   <td><?= $u['lastName']?></td>
-                                   <td><?= $u['firstName']?></td>
+                                   <td><?= $u->getLastName()?></td>
+                                   <td><?= $u->getFirstName()?></td>
 
                                </tr>
                                <?php
