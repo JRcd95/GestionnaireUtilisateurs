@@ -45,14 +45,22 @@ class Register {
 
     public function addUsers(){
 
-                $query = "INSERT INTO users VALUES(:firstName, :lastName, :nameGroup)";
-                $stat = $this->bdd->prepare($query);
-                $stat->bindValue(':firstName', $_POST['firstName'], PDO::PARAM_STR);
-                $stat->bindValue(':lastName', $_POST['lastName'], PDO::PARAM_STR);
-                $stat->bindValue(':nameGroup', $_POST['nameGroup'], PDO::PARAM_STR);
+        $query = "INSERT INTO users VALUES(:firstName, :lastName, :nameGroup)";
+        $stat = $this->bdd->prepare($query);
+        $stat->bindValue(':firstName', $_POST['firstName'], PDO::PARAM_STR);
+        $stat->bindValue(':lastName', $_POST['lastName'], PDO::PARAM_STR);
+        $stat->bindValue(':nameGroup', $_POST['nameGroup'], PDO::PARAM_STR);
 
-                $stat->execute();
+        $stat->execute();
 
+    }
+
+    public function addGroups($name){
+        $query = "INSERT INTO groups VALUES(:name)";
+        $stat = $this->bdd->prepare($query);
+        $stat->bindValue(':name', $name, PDO::PARAM_STR);
+
+        $stat->execute();
     }
 
 
