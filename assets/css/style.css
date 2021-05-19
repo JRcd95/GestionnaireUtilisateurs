@@ -1,0 +1,33 @@
+.navbar {
+    background: #023F61;
+    color: #FFFFFF;
+    padding-left: 10px;
+}
+.container {
+    color: #023F61;
+    padding-top: 30px;
+}
+
+.btn  {
+    background: #023F61;
+    color: #FFFFFF;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+.btn:hover{
+    background: #FFFFFF;
+    color: #023F61;
+    border-color: #023F61;
+}
+.form-group{
+    margin-top: 5px;
+}
+
+.card {
+    padding-top: 5px;
+}
+
+.form-control:focus {
+    border-color: #023F61;
+    box-shadow: 0 0 0 0.25rem rgba(220, 220, 250, 0.5);
+}
