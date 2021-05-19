@@ -20,6 +20,7 @@ class Register {
             $user = new Users();
             $user->setFirstName($row['firstName']);
             $user->setLastName($row['lastName']);
+            $user->setGroup($row['nameGroup']);
 
             $users[] = $user;
         }
@@ -44,10 +45,11 @@ class Register {
 
     public function addUsers(){
 
-                $query = "INSERT INTO users VALUES(:firstName, :lastName)";
+                $query = "INSERT INTO users VALUES(:firstName, :lastName, :nameGroup)";
                 $stat = $this->bdd->prepare($query);
                 $stat->bindValue(':firstName', $_POST['firstName'], PDO::PARAM_STR);
                 $stat->bindValue(':lastName', $_POST['lastName'], PDO::PARAM_STR);
+                $stat->bindValue(':nameGroup', $_POST['nameGroup'], PDO::PARAM_STR);
 
                 $stat->execute();
 

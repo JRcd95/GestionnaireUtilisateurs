@@ -39,7 +39,7 @@
                        </div>
                        <div class="form-group">
                            <label for="groupUser">Groupes</label>
-                           <select class="form-control">
+                           <select class="form-control" name="nameGroup">
                                <?php
                                    $groups= $register->listGroups();
                                    foreach($groups as $g) {
@@ -64,6 +64,7 @@
                        <tr>
                            <th>Nom</th>
                            <th>Prénom</th>
+                           <th>Groupe</th>
                        </tr>
                        <?php
                            $users = $register->listUsers();
@@ -72,6 +73,7 @@
                                <tr>
                                    <td><?= $u->getLastName()?></td>
                                    <td><?= $u->getFirstName()?></td>
+                                   <td><?= $u->getGroup()?></td>
 
                                </tr>
                                <?php
